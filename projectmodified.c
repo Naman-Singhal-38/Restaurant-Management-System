@@ -32,25 +32,25 @@ struct Table available_tables6[5];// array of structure table 6-seater
 // table num 1-5 are 2seater ; 6-10 are 4seater ; 11-15 are 6seater 
 
 // all functions
-void reserve_table(int table_size);//ABBAS
-void vacat_table(int table_num);//ABBAS
-void table_status(int table_num);//ABBAS
-int table_status_check(int table_size);//NAMAN
-void tables_available(int table_size);//NAMAN
-void delivery_order(); //MAHARSHI
-void delivery_order_cancel(int order_num); //MAHARSHI
-void delivery_order_status(int order_num);//MAHARSHI
-void delivery_preparing_order(int order_num); //MAHARSHI
-void dispatch_delivery_order(int order_num);//MAHARSHI
-void delivery_boy_initialize();//NAMAN
-void delivery_boy_unavailable(char id[]); //MATEEN
-int verify_delivery_boy(char id[], char password[]); //MATEEN
-void order_delivered(int order_num);//MATEEN
-int delivery_boy_available();//MATEEN 
-int assign_delivery_boy();//MATEEN
+void reserve_table(int table_size);
+void vacat_table(int table_num);
+void table_status(int table_num);
+int table_status_check(int table_size);
+void tables_available(int table_size);
+void delivery_order(); 
+void delivery_order_cancel(int order_num); 
+void delivery_order_status(int order_num);
+void delivery_preparing_order(int order_num);
+void dispatch_delivery_order(int order_num);
+void delivery_boy_initialize();
+void delivery_boy_unavailable(char id[]); 
+int verify_delivery_boy(char id[], char password[]); 
+void order_delivered(int order_num);
+int delivery_boy_available(); 
+int assign_delivery_boy();
 
 // function for booking tables 
-void reserve_table(int table_size)//ABBAS
+void reserve_table(int table_size)
 {
     int check=table_status_check(table_size);
     if(check==-1)
@@ -95,7 +95,7 @@ void reserve_table(int table_size)//ABBAS
 }
 
 // function for vacating the table
-void vacat_table(int table_num)//ABBAS
+void vacat_table(int table_num)
 {
     int x,a;
     if(table_num>10 && table_num<16)
@@ -143,7 +143,7 @@ void vacat_table(int table_num)//ABBAS
 
 
 // function to check the status of a perticular table
-void table_status(int table_num)//ABBAS
+void table_status(int table_num)
 {
     if(table_num<6)
     printf("%s\n",available_tables2[(table_num-1)].table_status);
@@ -157,7 +157,7 @@ void table_status(int table_num)//ABBAS
 
 
 // function for ckecking table status 
-int table_status_check(int table_size) //NAMAN
+int table_status_check(int table_size) 
 {
     int s=0,i,a;
     if(table_size<=2)
@@ -207,7 +207,7 @@ int table_status_check(int table_size) //NAMAN
 }
 
 // function to check number of tables available of a perticular table-size
-void tables_available(int table_size)//NAMAN
+void tables_available(int table_size)
 {
     int count=0,a;
     if(table_size==2)
@@ -248,7 +248,7 @@ void tables_available(int table_size)//NAMAN
 
 
 // structure for a delivery order
-struct DeliveryOrder   //MAHARSHI
+struct DeliveryOrder   
 {
     int Order_Number;
     char customer_name[50];
@@ -266,7 +266,7 @@ int deliveryboy_num=0;  //no of delivery orders
 
 
 // structure for delivery boy
-struct DeliveryBoy   //MATEEN
+struct DeliveryBoy   
 {
     char name[25];
     char number[13];
@@ -279,7 +279,7 @@ struct DeliveryBoy   //MATEEN
 struct DeliveryBoy delivery_boy[maxdb] ;// array of structure Delivery_Boy
 
 // function for placing orders for delivery
-void delivery_order() //MAHARSHI
+void delivery_order() 
 {
     if (delivery_order_count >= omax)//checking whether the order can be accepted or not.
     {
@@ -311,7 +311,7 @@ void delivery_order() //MAHARSHI
 }
 
 // function to be called to cancel the order
-void delivery_order_cancel(int order_num) //MAHARSHI 
+void delivery_order_cancel(int order_num) 
 {
     if((strcmp(deliveryorder[(order_num-1)].delivery_status,"preparing order"))==0)
     {
@@ -338,7 +338,7 @@ void delivery_order_cancel(int order_num) //MAHARSHI
 }
 
 // function for checking order status 
-void delivery_order_status(int order_num)//MAHARSHI
+void delivery_order_status(int order_num)
 {
     if(strcmp( deliveryorder[(order_num-1)].delivery_status ,"invalid order number")==0)
     {
@@ -353,7 +353,7 @@ void delivery_order_status(int order_num)//MAHARSHI
 }
 
 // function to be called when the food is being prepared 
-void delivery_preparing_order(int order_num) //MAHARSHI
+void delivery_preparing_order(int order_num) 
 {
     if(strcmp( deliveryorder[(order_num-1)].delivery_status ,"order accepted")==0)
     {
@@ -369,7 +369,7 @@ void delivery_preparing_order(int order_num) //MAHARSHI
     
 
 // funtion to be called when order is dispatched
-void dispatch_delivery_order(int order_num)//MAHARSHI
+void dispatch_delivery_order(int order_num)
 {
     if(strcmp( deliveryorder[(order_num-1)].delivery_status ,"preparing order")==0)
     {
@@ -392,7 +392,7 @@ void dispatch_delivery_order(int order_num)//MAHARSHI
 
 
 // data set : containing information of delivery boys
-void delivery_boy_initialize()//NAMAN
+void delivery_boy_initialize()
 {
     // DELIVERY BOY 1
     strcpy(delivery_boy[0].name,"Aarav Sharma");
@@ -456,7 +456,7 @@ void delivery_boy_initialize()//NAMAN
     strcpy(delivery_boy[9].delivery_boy_status,"available");  
 }
 // function for delivery boys to mark themselves unavailable
-void delivery_boy_unavailable(char id[]) //MATEEN
+void delivery_boy_unavailable(char id[]) 
 {
     for(int i=0;i<maxdb;i++)
     {
@@ -469,7 +469,7 @@ void delivery_boy_unavailable(char id[]) //MATEEN
      printf("marked unavailable\n");
 }
 // function to verify delivery boy
-int verify_delivery_boy(char id[], char password[]) //MATEEN
+int verify_delivery_boy(char id[], char password[]) 
 {
     int c=-1;
     for(int i=0;i<maxdb;i++)
@@ -483,7 +483,7 @@ int verify_delivery_boy(char id[], char password[]) //MATEEN
     return c;
 }
 // funtion to be called when order is delivered
-void order_delivered(int order_num)//MATEEN
+void order_delivered(int order_num)
 {
     if(strcmp( deliveryorder[(order_num-1)].delivery_status ,"order dispatched")==0)
     {
@@ -498,7 +498,7 @@ void order_delivered(int order_num)//MATEEN
     }
 }
 // function to get number of delivery boys available
-int delivery_boy_available()//MATEEN
+int delivery_boy_available()
 {
     int count=0;
     for(int i=0;i<maxdb;i++)
@@ -510,7 +510,7 @@ int delivery_boy_available()//MATEEN
 }
 
 // function returns assinged delivery boy user id
-int assign_delivery_boy()//MATEEN
+int assign_delivery_boy()
 {
     int z=-1;
     for(int i=0;i<maxdb;i++)
@@ -741,4 +741,5 @@ int main()
             break;
         }
     }
+
 }
